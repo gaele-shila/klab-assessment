@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            width: 200px;
+            margin: 100px auto;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        #result {
+            width: 90%;
+            height: 40px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-size: 18px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head><center>
+<body><h1>Calculator</h1>
+
+<div class="calculator">
+    <input type="text" id="result" disabled>
+    <div class="row">
+        <button class="button" onclick="clearResult()">C</button>
+        <button class="button" onclick="appendToResult('(')">(</button>
+        <button class="button" onclick="appendToResult(')')">)</button>
+        <button class="button" onclick="deleteLast()">DEL</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToResult('7')">7</button>
+        <button class="button" onclick="appendToResult('8')">8</button>
+        <button class="button" onclick="appendToResult('9')">9</button>
+        <button class="button" onclick="appendToResult('/')">/</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToResult('4')">4</button>
+        <button class="button" onclick="appendToResult('5')">5</button>
+        <button class="button" onclick="appendToResult('6')">6</button>
+        <button class="button" onclick="appendToResult('*')">*</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToResult('1')">1</button>
+        <button class="button" onclick="appendToResult('2')">2</button>
+        <button class="button" onclick="appendToResult('3')">3</button>
+        <button class="button" onclick="appendToResult('-')">-</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToResult('0')">0</button>
+        <button class="button" onclick="appendToResult('.')">.</button>
+        <button class="button" onclick="calculateResult()">=</button>
+        <button class="button" onclick="appendToResult('+')">+</button>
+    </div>
+</div>
+
+<script>
+    function appendToResult(value) {
+        document.getElementById("result").value += value;
+    }
+
+    function clearResult() {
+        document.getElementById("result").value = "";
+    }
+
+    function deleteLast() {
+        var currentValue = document.getElementById("result").value;
+        document.getElementById("result").value = currentValue.slice(0, -1);
+    }
+
+    function calculateResult() {
+        var currentValue = document.getElementById("result").value;
+        try {
+            var result = eval(currentValue);
+            document.getElementById("result").value = result;
+        } catch (error) {
+            document.getElementById("result").value = "Error";
+        }
+    }
+</script>
+
+</body>
+</center>
+</html>
